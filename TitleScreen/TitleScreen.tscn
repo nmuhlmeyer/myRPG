@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://TitleScreen/buttons/ContinueButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TitleScreen/buttons/NewGameButton.tscn" type="PackedScene" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+func _on_NewGameButton_pressed():
+	print('New Game pressed - Change Scenes')
+	pass # Replace with function body.
+
+func _on_ContinueButton_pressed():
+	print('Continue pressed - Change Scenes')
+	pass # Replace with function body.
+"
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.5874
+margin_right = 1.5874
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="VBoxContainer" parent="."]
+margin_left = 60.0
+margin_top = 40.0
+margin_right = 580.0
+margin_bottom = 320.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="TextureRect" parent="Menu"]
+margin_right = 520.0
+margin_bottom = 64.0
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="CenterRow" type="HBoxContainer" parent="Menu"]
+margin_top = 68.0
+margin_right = 520.0
+margin_bottom = 280.0
+size_flags_vertical = 3
+
+[node name="Buttons" type="VBoxContainer" parent="Menu/CenterRow"]
+margin_right = 520.0
+margin_bottom = 212.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NewGameButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 3 )]
+margin_bottom = 60.0
+script = SubResource( 1 )
+
+[node name="ContinueButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 2 )]
+margin_top = 64.0
+margin_bottom = 124.0
+
+[connection signal="pressed" from="Menu/CenterRow/Buttons/NewGameButton" to="Menu/CenterRow/Buttons/NewGameButton" method="_on_NewGameButton_pressed"]
+[connection signal="toggled" from="Menu/CenterRow/Buttons/NewGameButton" to="Menu/CenterRow/Buttons/NewGameButton" method="_on_NewGameButton_toggled"]
+[connection signal="pressed" from="Menu/CenterRow/Buttons/ContinueButton" to="Menu/CenterRow/Buttons/NewGameButton" method="_on_ContinueButton_pressed"]

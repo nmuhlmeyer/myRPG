@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://combat/battlers/Character.gd" type="Script" id=1]
+[ext_resource path="res://menu/status/statusScreen.gd" type="Script" id=2]
+[ext_resource path="res://menu/status/Label.gd" type="Script" id=3]
+[ext_resource path="res://menu/status/Stats.gd" type="Script" id=4]
+
+[node name="statusScreen" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Character" type="Node" parent="."]
+script = ExtResource( 1 )
+maxHP = 200
+maxMP = 100
+maxWeight = 10
+pAttack = 10
+pDefense = 10
+mAttack = 10
+mDefense = 10
+restoration = 10
+speed = 10
+aggro = 10
+aim = 10
+evasion = 10
+crit = 10
+
+[node name="Interface" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level" type="Label" parent="Interface"]
+margin_left = 425.0
+margin_top = 50.0
+margin_right = 452.0
+margin_bottom = 64.0
+text = "Text"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats" type="Label" parent="Interface"]
+margin_left = 425.0
+margin_top = 125.0
+margin_right = 465.0
+margin_bottom = 139.0
+text = "text2"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
