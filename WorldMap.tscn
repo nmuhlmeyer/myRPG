@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/tilesets/pipo-map001_at.png" type="Texture" id=1]
 [ext_resource path="res://assets/tilesets/pipo-map001.png" type="Texture" id=2]
-[ext_resource path="res://old_player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -116,10 +116,10 @@ __meta__ = {
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 240, 160 )
 
-[node name="CollisionShape2D" parent="Player" index="1"]
+[node name="CollisionShape2D" parent="Player" index="0"]
 shape = SubResource( 4 )
 
-[node name="Camera2D" parent="Player" index="2"]
+[node name="Camera2D" parent="Player" index="3"]
 position = Vector2( 80, 32 )
 
 [editable path="Player"]
