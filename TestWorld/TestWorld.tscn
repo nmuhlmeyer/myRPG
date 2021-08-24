@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/tilesets/pipo-map001_at.png" type="Texture" id=1]
 [ext_resource path="res://TestWorld/Grid.gd" type="Script" id=2]
 [ext_resource path="res://assets/tilesets/pipo-map001.png" type="Texture" id=3]
-[ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://player/old2_Player.tscn" type="PackedScene" id=4]
 
 [sub_resource type="TileSet" id=1]
 0/name = "tallGrass"

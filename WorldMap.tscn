@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/tilesets/pipo-map001_at.png" type="Texture" id=1]
 [ext_resource path="res://assets/tilesets/pipo-map001.png" type="Texture" id=2]
@@ -91,9 +91,6 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 } ]
 5/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 16, 16 )
-
 [node name="WorldMap" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -113,13 +110,5 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 240, 160 )
-
-[node name="CollisionShape2D" parent="Player" index="0"]
-shape = SubResource( 4 )
-
-[node name="Camera2D" parent="Player" index="3"]
-position = Vector2( 80, 32 )
-
-[editable path="Player"]
+[node name="Player" parent="TileMap" instance=ExtResource( 3 )]
+position = Vector2( 86.0689, 23.1895 )

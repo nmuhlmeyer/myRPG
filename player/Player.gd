@@ -1,60 +1,31 @@
 extends KinematicBody2D
 
-var type
-#var grid
-onready var grid = get_parent()
-
-var speed = 0
-const MAX_SPEED = 400
-
-var velocity = Vector2()
-var direction = Vector2()
-
-var is_moving = false
-var target_pos = Vector2()
-var target_direction = Vector2()
+export var speed = 50
+var screenSize = Vector2.ZERO
 
 func _ready():
-	#grid = get_parent()
-	print(grid)
-	type = grid.PLAYER
-	set_physics_process(true)
+	screenSize = get_viewport_rect().size
 
 func _physics_process(delta):
-	direction = Vector2()
-	#var is_moving = Input.is_action_pressed('ui_up') or Input.is_action_pressed('ui_right') or Input.is_action_pressed('ui_down')  or Input.is_action_pressed('ui_left')
+	var direction = Vector2.ZERO
+	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	direction = direction.normalized()
 	
-	#if is_moving:
-		#speed = MAX_SPEED
-		
-	if Input.is_action_pressed('ui_up'):
-		direction.y = -1
-	elif Input.is_action_pressed('ui_down'):
-		direction.y = 1
-	if Input.is_action_pressed('ui_left'):
-		direction.x = -1
-	elif Input.is_action_pressed('ui_right'):
-		direction.x = 1
-	
-	if direction != Vector2():
-		speed = MAX_SPEED
+	if direction != Vector2.ZERO:
+		direction += direction * speed * delta
 	else:
-		speed = 0
-	
-	if not is_moving and direction != Vector2():
-		target_direction = direction
-		if grid.is_vacant(get_position(), target_direction):
-			target_pos = grid.update_child_pos(self)
-			is_moving = true
-	elif is_moving:
-		speed = MAX_SPEED
-		velocity = speed * target_direction * delta
-		#move(velocity)
-		pass
-	#var target_pos = grid.update_child_pos(self)
-	#set_position(target_pos)
-	
-	#new_obstacle.set_pos(map_to_world(pos))" by "new_obstacle.position = map_to_world(pos)"
+		direction = direction.move_toward(Vector2.ZERO, delta)
+	move_and_slide(direction)
 
-	#velocity = speed * direction.normalized() * delta
-	#move(velocity)
+	position += direction * speed * delta
+	#position.x = clamp(position.x,0,screenSize.x)
+	#position.y = clamp(position.y,0,screenSize.y)
+	
+	#if direction.x != 0:
+		#$AnimatedSprite.animation = "right"
+		#$AnimatedSprite.flip_h = direction.x < 0
+		#$AnimatedSprite.flip_v = false
+	#elif direction.y != 0:
+		#AnimatedSprite.animation = "up"
+		#$AnimatedSprite.flip_v = direction.y > 0
